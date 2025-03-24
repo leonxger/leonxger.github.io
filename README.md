@@ -3,7 +3,7 @@
 I'm **Leon**, full-stack developer from Germany, born in 1999. My programming journey began at the age of 8 when my mom gifted me a Python book. Since then, I've cultivated a deep passion for **AI**, **reverse engineering**, and **web development**. Currently, I'm focused on optimizing workflows that combine AI with programming to enhance efficiency and token utilization.
 
 # 🚀 Current Projects Overview
-- [SeeSharp Index Explorer]([SeeSharpIndexExplorer.html](https://leonxger.github.io/SeeSharpIndexExplorer.html)): A web-based tool designed to help developers navigate and explore C# codebases efficiently.
+- [SeeSharp Index Explorer](https://leonxger.github.io/SeeSharpIndexExplorer.html): A web-based tool designed to help developers navigate and explore C# codebases efficiently.
 
 
 
