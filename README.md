@@ -13,7 +13,6 @@ I'm **Leon**, full-stack developer from Germany, born in 1999. My programming jo
 - **Interests:** AI, Reverse Engineering, Web Development
 - **Current Focus:** Optimizing AI and programming workflows for enhanced efficiency and token-friendly operations
 - **Occupation:** Full-stack developer at a company specializing in the digitalization of large enterprises
-- **Fun Fact:** My coding journey started at 8 years old with a Python book from my mom!
 
 ## 🛠️ Technologies & Tools
 
