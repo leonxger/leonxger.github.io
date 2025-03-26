@@ -1,0 +1,1715 @@
+<!DOCTYPE html>
+<html lang="en" class="dark" data-lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Advanced FL Studio 2024 Cheat Sheet with keyboard shortcuts, workflow tips, and hidden features">
+    <meta name="keywords" content="FL Studio, music production, DAW, keyboard shortcuts, workflow, cheat sheet">
+    <meta name="author" content="FL Studio Power User">
+    <meta name="theme-color" content="#0d1117">
+
+    <title data-i18n="page-title">FL Studio 2024 Advanced Cheat Sheet | Workflow Optimization</title>
+
+    <!-- Favicon -->
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎹</text></svg>">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap">
+
+    <!-- Preload -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <style>
+        :root {
+            --primary: #ff6a00;
+            --primary-hover: #ff8c33;
+            --secondary: #00c2ff;
+            --secondary-hover: #33cfff;
+            --accent: #9933ff;
+            --dark-bg: #0d1117;
+            --card-bg: #1a1f29;
+            --hover-bg: #252d3b;
+            --text-primary: #f0f0f0;
+            --text-secondary: #c0c0c0;
+            --text-muted: #8b949e;
+            --border-color: #30363d;
+            --highlight: rgba(255, 106, 0, 0.15);
+        }
+
+        /* Light mode variables */
+        :root.light {
+            --primary: #ff6a00;
+            --primary-hover: #e65c00;
+            --secondary: #0088cc;
+            --secondary-hover: #006699;
+            --accent: #7700cc;
+            --dark-bg: #f8f9fa;
+            --card-bg: #ffffff;
+            --hover-bg: #f0f0f0;
+            --text-primary: #212529;
+            --text-secondary: #495057;
+            --text-muted: #6c757d;
+            --border-color: #dee2e6;
+            --highlight: rgba(255, 106, 0, 0.1);
+        }
+
+        /* Page loading animation */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--dark-bg);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease-out, visibility 0.5s ease-out;
+        }
+
+        .loading-spinner {
+            width: 80px;
+            height: 80px;
+            position: relative;
+        }
+
+        .loading-spinner:before,
+        .loading-spinner:after {
+            content: '';
+            border-radius: 50%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .loading-spinner:before {
+            border: 4px solid rgba(255, 106, 0, 0.15);
+        }
+
+        .loading-spinner:after {
+            border: 4px solid transparent;
+            border-top-color: var(--primary);
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--text-primary);
+            line-height: 1.6;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            opacity: 0;
+            transition: opacity 0.5s ease-in;
+        }
+
+        body.loaded {
+            opacity: 1;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .header-gradient {
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1), 0 1px 1px rgba(255, 255, 255, 0.05) inset;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            border: 1px solid var(--border-color);
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15), 0 1px 1px rgba(255, 255, 255, 0.05) inset;
+            border-color: var(--primary);
+        }
+
+        .shortcut {
+            border-left: 3px solid var(--primary);
+            transition: all 0.2s ease;
+            background-color: rgba(255, 106, 0, 0.05);
+            margin-bottom: 10px;
+            border-radius: 0 6px 6px 0;
+        }
+
+        .shortcut:hover {
+            border-left-width: 6px;
+            background-color: var(--highlight);
+        }
+
+        /* Light mode adjustments for shortcut */
+        :root.light .shortcut {
+            background-color: rgba(255, 106, 0, 0.05);
+        }
+
+        :root.light .shortcut:hover {
+            background-color: rgba(255, 106, 0, 0.1);
+        }
+
+        .kbd {
+            background-color: #2d2d2d;
+            border: 1px solid #444;
+            border-radius: 4px;
+            box-shadow: 0 2px 0 rgba(0, 0, 0, 0.3);
+            padding: 3px 6px;
+            font-family: monospace;
+            font-size: 0.9em;
+            color: var(--text-primary);
+            display: inline-block;
+            margin: 0 2px;
+            min-width: 22px;
+            text-align: center;
+            position: relative;
+            top: -1px;
+        }
+
+        /* Light mode adjustments for kbd */
+        :root.light .kbd {
+            background-color: #e9ecef;
+            border: 1px solid #ced4da;
+            box-shadow: 0 2px 0 rgba(0, 0, 0, 0.1);
+            color: #212529;
+        }
+
+        .section-header {
+            border-bottom: 2px solid var(--secondary);
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .section-header::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--primary);
+        }
+
+        /* Scrollbar styling */
+        ::-webkit-scrollbar {
+            width: 10px;
+            height: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--card-bg);
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, var(--primary), var(--secondary));
+            border-radius: 5px;
+            border: 2px solid var(--card-bg);
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(180deg, var(--primary-hover), var(--secondary-hover));
+        }
+
+        /* Animation classes */
+        .fade-in {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(15px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Search bar styling */
+        #search-input {
+            transition: all 0.3s ease;
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+        }
+
+        #search-input:focus {
+            box-shadow: 0 0 0 3px rgba(255, 106, 0, 0.3);
+            background-color: var(--hover-bg);
+            border-color: var(--primary);
+        }
+
+        /* Tooltip styling */
+        .tooltip {
+            position: relative;
+            display: inline-block;
+        }
+
+        .tooltip .tooltip-text {
+            visibility: hidden;
+            background-color: var(--card-bg);
+            color: var(--text-primary);
+            text-align: center;
+            border-radius: 6px;
+            padding: 10px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            transition: opacity 0.3s;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--border-color);
+            width: 200px;
+            font-size: 14px;
+        }
+
+        .tooltip:hover .tooltip-text {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        /* Category pills in nav */
+        .category-pill {
+            transition: all 0.3s ease;
+        }
+
+        .category-pill:hover,
+        .category-pill.active {
+            transform: translateY(-2px);
+        }
+
+        /* Success animation for feedback */
+        @keyframes successPulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(var(--primary-rgb), 0.7);
+            }
+
+            70% {
+                box-shadow: 0 0 0 10px rgba(var(--primary-rgb), 0);
+            }
+
+            100% {
+                box-shadow: 0 0 0 0 rgba(var(--primary-rgb), 0);
+            }
+        }
+
+        .success-pulse {
+            animation: successPulse 1s forwards;
+        }
+
+        /* Language Switcher */
+        .language-switcher {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .language-btn {
+            padding: 6px 10px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+            border: 1px solid var(--border-color);
+            background-color: transparent;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 50px;
+            min-height: 38px;
+            box-shadow: none;
+            color: var(--text-primary);
+        }
+
+        .language-btn:hover {
+            transform: translateY(-2px);
+            border-color: var(--primary);
+            box-shadow: none;
+            background-color: transparent;
+        }
+
+        .language-btn.active {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .author-attribution {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 100;
+            font-size: 14px;
+            color: var(--text-secondary);
+            font-weight: 600;
+            background: linear-gradient(90deg, var(--secondary), var(--primary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            padding: 5px 10px;
+            border-radius: 20px;
+            border: 1px solid var(--border-color);
+            background-color: var(--card-bg);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .author-attribution:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .container {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+
+            .kbd {
+                padding: 2px 4px;
+                font-size: 0.8em;
+            }
+        }
+
+        /* Extra responsive styling for tiny screens */
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.75rem !important;
+            }
+
+            h2 {
+                font-size: 1.25rem !important;
+            }
+
+            h3 {
+                font-size: 1.1rem !important;
+            }
+
+            .category-pill {
+                padding: 4px 8px !important;
+                font-size: 0.7rem !important;
+            }
+
+            .category-pill i {
+                margin-right: 4px !important;
+            }
+
+            .card {
+                padding: 0.75rem !important;
+            }
+
+            .shortcut {
+                padding-left: 0.5rem !important;
+                padding-right: 0.5rem !important;
+            }
+
+            .kbd {
+                padding: 1px 3px;
+                font-size: 0.7em;
+                min-width: 18px;
+            }
+
+            .grid {
+                gap: 0.75rem !important;
+            }
+
+            .tooltip .tooltip-text {
+                width: 160px;
+                font-size: 0.7rem;
+                padding: 6px;
+            }
+
+            #search-input {
+                padding: 0.5rem !important;
+            }
+
+            #search-button {
+                top: 0.25rem !important;
+                right: 0.25rem !important;
+            }
+
+            .help-modal-content {
+                width: 90% !important;
+                padding: 1rem !important;
+            }
+        }
+
+        @media (max-width: 320px) {
+            h1 {
+                font-size: 1.5rem !important;
+            }
+
+            .category-pill {
+                padding: 3px 6px !important;
+                font-size: 0.65rem !important;
+            }
+
+            .category-pill i {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body class="min-h-screen">
+    <!-- Loading Animation -->
+    <div class="loading-overlay" id="loading-overlay">
+        <div class="loading-spinner"></div>
+    </div>
+
+    <div id="app" class="container mx-auto px-4 py-8 max-w-6xl fade-in">
+        <!-- Header Section -->
+        <header class="mb-10 text-center relative">
+            <div
+                class="absolute inset-0 bg-gradient-to-r from-purple-900/20 to-orange-900/20 blur-3xl -z-10 opacity-30">
+            </div>
+
+            <!-- Language Switcher -->
+            <div class="flex justify-end mb-4">
+                <!-- <div class="language-switcher">
+                    <button onclick="toggleLanguage()" id="lang-toggle-btn" class="language-btn" type="button">
+                        EN
+                    </button>
+                </div> -->
+            </div>
+
+            <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold header-gradient mb-3 tracking-tight"
+                data-i18n="main-title">FL Studio 2024</h1>
+            <h2 class="text-lg sm:text-xl md:text-2xl font-medium text-gray-300 mb-2" data-i18n="sub-title">Advanced
+                Cheat Sheet</h2>
+            <p class="mt-3 text-gray-400 max-w-3xl mx-auto" data-i18n="description">Insider Tricks & Hidden Workflow
+                Optimizations</p>
+
+            <!-- Quick navigation menu -->
+            <div class="mt-6 inline-flex flex-wrap justify-center gap-1 sm:gap-2">
+                <a href="#shortcuts"
+                    class="category-pill px-3 py-1 sm:px-4 sm:py-2 bg-gradient-to-r from-orange-600 to-orange-500 text-white rounded-full text-xs sm:text-sm font-medium hover:from-orange-500 hover:to-orange-400 transition-all shadow-md">
+                    <i class="fas fa-keyboard mr-1 sm:mr-2"></i><span data-i18n="nav-shortcuts">Shortcuts</span>
+                </a>
+                <a href="#workflow"
+                    class="category-pill px-3 py-1 sm:px-4 sm:py-2 bg-blue-600 text-white rounded-full text-xs sm:text-sm font-medium hover:bg-blue-500 transition-all shadow-md">
+                    <i class="fas fa-sliders mr-1 sm:mr-2"></i><span data-i18n="nav-workflow">Workflow</span>
+                </a>
+                <a href="#organization"
+                    class="category-pill px-3 py-1 sm:px-4 sm:py-2 bg-purple-600 text-white rounded-full text-xs sm:text-sm font-medium hover:bg-purple-500 transition-all shadow-md">
+                    <i class="fas fa-folder-tree mr-1 sm:mr-2"></i><span
+                        data-i18n="nav-organization">Organization</span>
+                </a>
+                <a href="#features"
+                    class="category-pill px-3 py-1 sm:px-4 sm:py-2 bg-green-600 text-white rounded-full text-xs sm:text-sm font-medium hover:bg-green-500 transition-all shadow-md">
+                    <i class="fas fa-star mr-1 sm:mr-2"></i><span data-i18n="nav-features">2024 Features</span>
+                </a>
+                <a href="#automation"
+                    class="category-pill px-3 py-1 sm:px-4 sm:py-2 bg-pink-600 text-white rounded-full text-xs sm:text-sm font-medium hover:bg-pink-500 transition-all shadow-md">
+                    <i class="fas fa-bezier-curve mr-1 sm:mr-2"></i><span data-i18n="nav-automation">Automation</span>
+                </a>
+                <a href="#mixer"
+                    class="category-pill px-3 py-1 sm:px-4 sm:py-2 bg-yellow-600 text-white rounded-full text-xs sm:text-sm font-medium hover:bg-yellow-500 transition-all shadow-md">
+                    <i class="fas fa-sliders-h mr-1 sm:mr-2"></i><span data-i18n="nav-mixer">Mixer</span>
+                </a>
+            </div>
+        </header>
+
+        <!-- Search Bar -->
+        <div class="mb-8 max-w-xl mx-auto relative">
+            <div class="relative">
+                <input id="search-input" type="text" data-i18n-placeholder="search-placeholder"
+                    placeholder="Search shortcuts or features..."
+                    class="w-full px-3 sm:px-5 py-2 sm:py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 shadow-md text-sm sm:text-base">
+                <button id="search-button"
+                    class="absolute right-2 sm:right-3 top-1.5 sm:top-2.5 text-gray-400 hover:text-orange-500 transition-colors p-1">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+            <div id="search-stats" class="text-xs text-gray-500 mt-2 pl-2 hidden">
+                <span data-i18n="search-showing">Showing</span> <span id="results-count">0</span> <span
+                    data-i18n="search-results">results</span>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Advanced Keyboard Shortcuts Section -->
+            <section id="shortcuts" class="col-span-1 md:col-span-2 lg:col-span-3 scroll-mt-8">
+                <h2 class="text-xl sm:text-2xl font-bold mb-6 section-header text-white flex items-center flex-wrap">
+                    <i class="fas fa-keyboard mr-3 text-orange-500"></i><span data-i18n="shortcuts-title">Advanced
+                        Keyboard Shortcuts</span>
+                    <span class="ml-auto text-sm font-normal text-gray-400 hover:text-white cursor-pointer"
+                        id="toggle-all-shortcuts">
+                        <i class="fas fa-eye mr-1"></i><span data-i18n="shortcuts-show-all">Show All</span>
+                    </span>
+                </h2>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+                    <!-- Playlist & Pattern Management -->
+                    <div class="card p-5 hover:border-orange-500 transition-all">
+                        <h3 class="text-xl font-semibold mb-4 text-orange-400 flex items-center">
+                            <i class="fas fa-list mr-2"></i>Playlist & Pattern Management
+                            <div class="tooltip ml-2">
+                                <i class="fas fa-info-circle text-gray-500 hover:text-orange-400 text-sm"></i>
+                                <span class="tooltip-text">Essential commands for organizing your patterns and playlist
+                                    elements efficiently</span>
+                            </div>
+                        </h3>
+                        <ul class="space-y-3">
+                            <li class="shortcut pl-3 py-2 hover:bg-orange-900/20 transition-all">
+                                <div class="flex items-center mb-1">
+                                    <span class="kbd">Ctrl</span> + <span class="kbd">Shift</span> + <span
+                                        class="kbd">Del</span>
+                                    <span class="ml-auto text-xs text-gray-500 kbd-category">Playlist</span>
+                                </div>
+                                <p class="text-gray-300">Delete patterns in playlist</p>
+                            </li>
+                            <li class="shortcut pl-3 py-2 hover:bg-orange-900/20 transition-all">
+                                <div class="flex items-center mb-1">
+                                    <span class="kbd">Ctrl</span> + <span class="kbd">Shift</span> + <span
+                                        class="kbd">C</span>
+                                    <span class="ml-auto text-xs text-gray-500 kbd-category">Playlist</span>
+                                </div>
+                                <p class="text-gray-300">Clone patterns in playlist</p>
+                            </li>
+                            <li class="shortcut pl-3 py-2 hover:bg-orange-900/20 transition-all">
+                                <div class="flex items-center mb-1">
+                                    <span class="kbd">Shift</span> + <span class="kbd">M</span>
+                                    <span class="ml-auto text-xs text-gray-500 kbd-category">Audio</span>
+                                </div>
+                                <p class="text-gray-300">Enable/disable stretch mode for audio clips</p>
+                            </li>
+                            <li class="shortcut pl-3 py-2 hover:bg-orange-900/20 transition-all">
+                                <div class="flex items-center mb-1">
+                                    <span class="kbd">Alt</span> + <span class="kbd">T</span>
+                                    <span class="ml-auto text-xs text-gray-500 kbd-category">Navigation</span>
+                                </div>
+                                <p class="text-gray-300">Add song markers for easier navigation</p>
+                            </li>
+                            <li class="shortcut pl-3 py-2 hover:bg-orange-900/20 transition-all">
+                                <div class="flex items-center mb-1">
+                                    <span class="kbd">Right click</span> + type <span class="kbd">T, A, 1, Enter</span>
+                                    <button
+                                        class="ml-auto text-xs text-blue-400 hover:text-blue-300 flex items-center copy-shortcut"
+                                        data-shortcut="Right click + type T,A,1,Enter">
+                                        <i class="fas fa-copy mr-1"></i>Copy
+                                    </button>
+                                </div>
+                                <p class="text-gray-300">Quick conversion to audio track</p>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Efficiency Boosters -->
+                    <div class="card p-5">
+                        <h3 class="text-xl font-semibold mb-4 text-orange-400">
+                            <i class="fas fa-bolt mr-2"></i>Efficiency Boosters
+                        </h3>
+                        <ul class="space-y-3">
+                            <li class="shortcut pl-3 py-2">
+                                <span class="kbd">Ctrl</span> + <span class="kbd">H</span>
+                                <p class="text-gray-400">Force stop all sounds</p>
+                            </li>
+                            <li class="shortcut pl-3 py-2">
+                                <span class="kbd">F8</span>
+                                <p class="text-gray-400">Quick plugin picker with keyboard search</p>
+                            </li>
+                            <li class="shortcut pl-3 py-2">
+                                <span class="kbd">Ctrl</span> + <span class="kbd">Left Shift</span> + <span
+                                    class="kbd">L</span>
+                                <p class="text-gray-400">Assign multiple instruments to individual mixer tracks</p>
+                            </li>
+                            <li class="shortcut pl-3 py-2">
+                                <span class="kbd">Ctrl</span> + <span class="kbd">Shift</span> + <span
+                                    class="kbd">Alt</span> + <span class="kbd">A</span> + <span class="kbd">Right
+                                    Click</span> on a knob
+                                <p class="text-gray-400">Instant automation clip creation</p>
+                            </li>
+                            <li class="shortcut pl-3 py-2">
+                                <span class="kbd">Alt</span> + <span class="kbd">Click</span>
+                                <p class="text-gray-400">Reset almost any parameter to default value</p>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Piano Roll Mastery -->
+                    <div class="card p-5">
+                        <h3 class="text-xl font-semibold mb-4 text-orange-400">
+                            <i class="fas fa-music mr-2"></i>Piano Roll Mastery
+                        </h3>
+                        <ul class="space-y-3">
+                            <li class="shortcut pl-3 py-2">
+                                <span class="kbd">Ctrl</span> + <span class="kbd">Right Click</span> (in Piano Roll)
+                                <p class="text-gray-400">Snap to focus the current pattern</p>
+                            </li>
+                            <li class="shortcut pl-3 py-2">
+                                <span class="kbd">Alt</span> + <span class="kbd">U</span>
+                                <p class="text-gray-400">Arpeggiate selected notes</p>
+                            </li>
+                            <li class="shortcut pl-3 py-2">
+                                <span class="kbd">Alt</span> + <span class="kbd">A</span>
+                                <p class="text-gray-400">Randomize selected notes</p>
+                            </li>
+                            <li class="shortcut pl-3 py-2">
+                                <span class="kbd">Alt</span> + <span class="kbd">R</span>
+                                <p class="text-gray-400">Quantize notes without opening dialog box</p>
+                            </li>
+                            <li class="shortcut pl-3 py-2">
+                                <span class="kbd">Alt</span> + <span class="kbd">S</span>
+                                <p class="text-gray-400">Jump to next channel while maintaining Piano Roll view</p>
+                            </li>
+                            <li class="shortcut pl-3 py-2">
+                                <span class="kbd">Shift</span> + <span class="kbd">B</span>
+                                <p class="text-gray-400">Activate roll tool for quick note painting</p>
+                            </li>
+                            <li class="shortcut pl-3 py-2">
+                                <span class="kbd">Shift</span> + <span class="kbd">D</span>
+                                <p class="text-gray-400">Cut notes to nearest grid</p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Advanced Workflow Techniques -->
+            <section id="workflow" class="col-span-1 md:col-span-2 lg:col-span-3 mt-8 scroll-mt-8">
+                <h2 class="text-xl sm:text-2xl font-bold mb-6 section-header text-white flex items-center">
+                    <i class="fas fa-sliders mr-3 text-orange-500"></i><span data-i18n="workflow-title">Advanced
+                        Workflow Techniques</span>
+                </h2>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+                    <!-- Smart Pattern Management -->
+                    <div class="card p-5 hover:border-orange-500 transition-all">
+                        <h3 class="text-xl font-semibold mb-4 text-orange-400 flex items-center">
+                            <i class="fas fa-layer-group mr-2"></i>Smart Pattern Management
+                            <div class="tooltip ml-2">
+                                <i class="fas fa-info-circle text-gray-500 hover:text-orange-400 text-sm"></i>
+                                <span class="tooltip-text">Organize complex productions by splitting patterns into
+                                    individual channels</span>
+                            </div>
+                        </h3>
+                        <div class="space-y-3">
+                            <div class="bg-gray-800 rounded-lg p-3 border-l-4 border-orange-500">
+                                <p class="text-gray-300 font-medium">Split by Channel:</p>
+                                <ol class="list-decimal ml-5 text-gray-400 space-y-2 mt-2">
+                                    <li>Name all plugins first (<span class="kbd">Shift</span> + <span class="kbd">Left
+                                            Click</span>)</li>
+                                    <li>Route all plugins (<span class="kbd">Ctrl</span> + <span class="kbd">L</span>)
+                                    </li>
+                                    <li>Right-click pattern and select "Split by Channel"</li>
+                                    <li>Now arrange individual elements on playlist with perfect organization</li>
+                                </ol>
+                            </div>
+                            <div class="flex items-center justify-between bg-gray-800 bg-opacity-50 p-2 rounded-lg">
+                                <span class="text-gray-400 text-sm"><i class="fas fa-magic text-yellow-500 mr-1"></i>
+                                    Makes edits cleaner and more intuitive</span>
+                                <span class="text-xs bg-orange-800 text-orange-100 px-2 py-1 rounded">Recommended</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Enhanced Navigation -->
+                    <div class="card p-5 hover:border-orange-500 transition-all">
+                        <h3 class="text-xl font-semibold mb-4 text-orange-400 flex items-center">
+                            <i class="fas fa-compass mr-2"></i>Enhanced Navigation
+                            <div class="tooltip ml-2">
+                                <i class="fas fa-info-circle text-gray-500 hover:text-orange-400 text-sm"></i>
+                                <span class="tooltip-text">Advanced techniques to move around FL Studio
+                                    efficiently</span>
+                            </div>
+                        </h3>
+                        <ul class="space-y-3">
+                            <li class="shortcut pl-3 py-2 hover:bg-orange-900/20 transition-all">
+                                <div class="flex items-center mb-1">
+                                    <span class="kbd">Double right click</span> and hold
+                                    <span class="ml-auto text-xs text-gray-500 kbd-category">Tools</span>
+                                </div>
+                                <p class="text-gray-300">Temporarily switch to mute tool in playlist or piano roll</p>
+                            </li>
+                            <li class="shortcut pl-3 py-2 hover:bg-orange-900/20 transition-all">
+                                <div class="flex items-center mb-1">
+                                    <span class="kbd">Middle mouse click</span> on sample
+                                    <span class="ml-auto text-xs text-gray-500 kbd-category">Browser</span>
+                                </div>
+                                <p class="text-gray-300">Replace selected sample in step sequencer without dragging</p>
+                            </li>
+                            <li class="shortcut pl-3 py-2 hover:bg-orange-900/20 transition-all">
+                                <div class="flex items-center mb-1">
+                                    <span class="kbd">Right click</span> + <span class="kbd">scroll</span>
+                                    <span class="ml-auto text-xs text-gray-500 kbd-category">Playlist</span>
+                                </div>
+                                <p class="text-gray-300">Switch between tools in playlist</p>
+                            </li>
+                            <li class="shortcut pl-3 py-2 hover:bg-orange-900/20 transition-all">
+                                <div class="flex items-center mb-1">
+                                    <span class="kbd">Alt</span> + <span class="kbd">↑/↓</span>
+                                    <span class="ml-auto text-xs text-gray-500 kbd-category">Channels</span>
+                                </div>
+                                <p class="text-gray-300">Reorder Pattern Rack Channels without drag and drop</p>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Memory & CPU Optimization -->
+                    <div class="card p-5 hover:border-orange-500 transition-all">
+                        <h3 class="text-xl font-semibold mb-4 text-orange-400 flex items-center">
+                            <i class="fas fa-microchip mr-2"></i>Memory & CPU Optimization
+                            <div class="tooltip ml-2">
+                                <i class="fas fa-info-circle text-gray-500 hover:text-orange-400 text-sm"></i>
+                                <span class="tooltip-text">Handle large projects with better performance</span>
+                            </div>
+                        </h3>
+                        <ul class="space-y-3">
+                            <li class="shortcut pl-3 py-2 hover:bg-orange-900/20 transition-all">
+                                <div class="flex items-center mb-1">
+                                    <span class="kbd">F10</span>
+                                    <span
+                                        class="ml-auto text-xs px-1.5 py-0.5 bg-green-800 text-green-100 rounded">Performance</span>
+                                </div>
+                                <p class="text-gray-300">Low Latency Mode: Activate Smart Disable for inactive plugins
+                                </p>
+                            </li>
+                            <li class="shortcut pl-3 py-2 hover:bg-orange-900/20 transition-all">
+                                <div class="flex items-center mb-1">
+                                    <span class="font-medium text-gray-200">Project Rendering Trick</span>
+                                    <span
+                                        class="ml-auto text-xs px-1.5 py-0.5 bg-green-800 text-green-100 rounded">Performance</span>
+                                </div>
+                                <p class="text-gray-300">Render complex patterns to audio, then reload them as audio
+                                    clips to reduce CPU load</p>
+                            </li>
+                            <li class="shortcut pl-3 py-2 hover:bg-orange-900/20 transition-all">
+                                <div class="flex items-center mb-1">
+                                    <span class="font-medium text-gray-200">Browser Auto Hide</span>
+                                    <span
+                                        class="ml-auto text-xs px-1.5 py-0.5 bg-blue-800 text-blue-100 rounded">UI</span>
+                                </div>
+                                <p class="text-gray-300">Right-click on browser's title bar and select "Auto Hide" to
+                                    reclaim screen space</p>
+                            </li>
+                            <li class="shortcut pl-3 py-2 hover:bg-orange-900/20 transition-all">
+                                <div class="flex items-center mb-1">
+                                    <span class="kbd">Ctrl</span> + <span class="kbd">B</span>
+                                    <span
+                                        class="ml-auto text-xs px-1.5 py-0.5 bg-blue-800 text-blue-100 rounded">UI</span>
+                                </div>
+                                <p class="text-gray-300">Toggle browser visibility for maximum workspace</p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Project Organization & Templates -->
+            <section id="organization" class="col-span-1 md:col-span-2 lg:col-span-3 mt-8 scroll-mt-8">
+                <h2 class="text-xl sm:text-2xl font-bold mb-6 section-header text-white flex items-center">
+                    <i class="fas fa-folder-tree mr-3 text-orange-500"></i><span data-i18n="organization-title">Project
+                        Organization & Templates</span>
+                </h2>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
+                    <!-- Custom Default Template -->
+                    <div class="card p-5 hover:border-orange-500 transition-all">
+                        <h3 class="text-xl font-semibold mb-4 text-orange-400 flex items-center">
+                            <i class="fas fa-file-code mr-2"></i>Custom Default Template
+                            <div class="tooltip ml-2">
+                                <i class="fas fa-info-circle text-gray-500 hover:text-orange-400 text-sm"></i>
+                                <span class="tooltip-text">Save time on every project by setting up your workflow
+                                    once</span>
+                            </div>
+                        </h3>
+                        <div class="space-y-3">
+                            <div class="bg-gray-800 rounded-lg p-3 border-l-4 border-green-500">
+                                <p class="text-gray-300 font-medium">Create a personalized template with:</p>
+                                <ul class="list-disc ml-5 text-gray-400 space-y-1 mt-2">
+                                    <li>Pre-routed drum tracks with color coding</li>
+                                    <li>Common effect buses</li>
+                                    <li>Favorite plugins preloaded</li>
+                                    <li>Mixer tracks pre-named</li>
+                                </ul>
+                            </div>
+                            <div class="bg-gray-800 bg-opacity-50 p-3 rounded-lg">
+                                <p class="text-gray-300 text-sm font-medium mb-1">Save to:</p>
+                                <div class="flex items-center justify-between">
+                                    <code
+                                        class="text-gray-300 bg-gray-900 p-2 rounded text-xs block overflow-x-auto whitespace-nowrap max-w-full">C:\Users\[Username]\Documents\Image-Line\Data\FL
+                                        Studio\Projects\Templates</code>
+                                    <button class="copy-shortcut text-blue-400 hover:text-blue-300 ml-2"
+                                        data-shortcut="C:\Users\[Username]\Documents\Image-Line\Data\FL Studio\Projects\Templates">
+                                        <i class="fas fa-copy"></i>
+                                    </button>
+                                </div>
+                                <p class="text-gray-400 mt-2 text-sm"><i
+                                        class="fas fa-lightbulb text-yellow-500 mr-1"></i> Set as default in General
+                                    Settings > Miscellaneous</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Multi-Arrangement Workflow -->
+                    <div class="card p-5 hover:border-orange-500 transition-all">
+                        <h3 class="text-xl font-semibold mb-4 text-orange-400 flex items-center">
+                            <i class="fas fa-project-diagram mr-2"></i>Multi-Arrangement Workflow
+                            <div class="tooltip ml-2">
+                                <i class="fas fa-info-circle text-gray-500 hover:text-orange-400 text-sm"></i>
+                                <span class="tooltip-text">Work on multiple versions of your track simultaneously</span>
+                            </div>
+                        </h3>
+                        <div class="space-y-3">
+                            <div class="bg-gray-800 rounded-lg p-3 border-l-4 border-blue-500">
+                                <p class="text-gray-300 font-medium">Use multiple arrangements with dedicated pattern
+                                    groups:</p>
+                                <ol class="list-decimal ml-5 text-gray-400 space-y-1 mt-2">
+                                    <li>Create pattern groups (<span class="kbd">Right click</span> in browser)</li>
+                                    <li>Use one arrangement as "sketchpad" for experimentation</li>
+                                    <li>Keep main arrangement clean for final production</li>
+                                    <li>Filter patterns by group for better organization</li>
+                                </ol>
+                            </div>
+                            <div class="bg-gray-800 bg-opacity-50 p-2 rounded-lg">
+                                <p class="text-gray-400 text-sm"><i class="fas fa-lightbulb text-yellow-500 mr-1"></i>
+                                    Tip: Use <span class="kbd">Alt</span> + <span class="kbd">drag</span> to clone
+                                    entire pattern sections between arrangements</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Channel Grouping Strategies -->
+                    <div class="card p-5 hover:border-orange-500 transition-all">
+                        <h3 class="text-xl font-semibold mb-4 text-orange-400 flex items-center">
+                            <i class="fas fa-object-group mr-2"></i>Channel Grouping Strategies
+                            <div class="tooltip ml-2">
+                                <i class="fas fa-info-circle text-gray-500 hover:text-orange-400 text-sm"></i>
+                                <span class="tooltip-text">Organize your channels effectively to manage complex
+                                    projects</span>
+                            </div>
+                        </h3>
+                        <div class="space-y-3">
+                            <div class="bg-gray-800 rounded-lg p-3 border-l-4 border-purple-500">
+                                <h4 class="text-gray-200 font-medium flex items-center mb-2">
+                                    <i class="fas fa-layer-group mr-2 text-purple-400"></i>Nested Groups
+                                </h4>
+                                <p class="text-gray-400">Sort instruments in collapsible groups with automation tucked
+                                    under individual instruments</p>
+
+                                <h4 class="text-gray-200 font-medium flex items-center mb-2 mt-4">
+                                    <i class="fas fa-link mr-2 text-purple-400"></i>Group with Above Track
+                                </h4>
+                                <p class="text-gray-400">Right-click playlist track and select "Group with Above Track"
+                                    to create logical instrument family hierarchies</p>
+                            </div>
+                            <div class="bg-gray-800 bg-opacity-50 p-2 rounded-lg">
+                                <p class="text-gray-400 text-sm"><i class="fas fa-keyboard text-yellow-500 mr-1"></i>
+                                    Press <span class="kbd">Ctrl</span> + <span class="kbd">G</span> to create a new
+                                    group quickly</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- FL Studio 2024 Exclusive Features -->
+            <section id="features" class="col-span-1 md:col-span-2 lg:col-span-3 mt-8 scroll-mt-8">
+                <h2 class="text-xl sm:text-2xl font-bold mb-4 section-header text-white">
+                    <i class="fas fa-star mr-2 text-orange-500"></i><span data-i18n="features-title">FL Studio 2024
+                        Exclusive Features</span>
+                </h2>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
+                    <!-- AI-Powered Tools -->
+                    <div class="card p-5">
+                        <h3 class="text-xl font-semibold mb-4 text-orange-400">
+                            <i class="fas fa-brain mr-2"></i>AI-Powered Tools
+                        </h3>
+                        <ul class="space-y-3">
+                            <li class="shortcut pl-3 py-2">
+                                <span class="font-medium">Chord Progression Generator</span>
+                                <p class="text-gray-400">Create chord sequences based on genre/vibe or generate backing
+                                    for existing melodies</p>
+                            </li>
+                            <li class="shortcut pl-3 py-2">
+                                <span class="font-medium">AI Mastering</span>
+                                <p class="text-gray-400">Advanced controls for professional-sounding masters with
+                                    minimal effort</p>
+                            </li>
+                            <li class="shortcut pl-3 py-2">
+                                <span class="font-medium">Coproducer</span>
+                                <p class="text-gray-400">AI model trained on the FL Studio manual for production
+                                    assistance</p>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- New Synths & Effects -->
+                    <div class="card p-5">
+                        <h3 class="text-xl font-semibold mb-4 text-orange-400">
+                            <i class="fas fa-wave-square mr-2"></i>New Synths & Effects
+                        </h3>
+                        <ul class="space-y-3">
+                            <li class="shortcut pl-3 py-2">
+                                <span class="font-medium">Kepler Exo</span>
+                                <p class="text-gray-400">Roland Jupiter-8/Juno-6 inspired synth with dual oscillators,
+                                    16-slot modulation matrix, onboard vintage effects</p>
+                            </li>
+                            <li class="shortcut pl-3 py-2">
+                                <span class="font-medium">Low Lifter</span>
+                                <p class="text-gray-400">Sub-bass enhancer with precise frequency control</p>
+                            </li>
+                            <li class="shortcut pl-3 py-2">
+                                <span class="font-medium">Spreader</span>
+                                <p class="text-gray-400">Advanced stereo widening tool beyond basic panning</p>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Architectural Improvements -->
+                    <div class="card p-5">
+                        <h3 class="text-xl font-semibold mb-4 text-orange-400">
+                            <i class="fas fa-cogs mr-2"></i>Architectural Improvements
+                        </h3>
+                        <ul class="space-y-3">
+                            <li class="shortcut pl-3 py-2">
+                                <span class="font-medium">CLAP Plugin Support</span>
+                                <p class="text-gray-400">Superior performance and MIDI 2.0 integration</p>
+                            </li>
+                            <li class="shortcut pl-3 py-2">
+                                <span class="font-medium">New Mixer</span>
+                                <p class="text-gray-400">Expanded capacity beyond previous 128 insert limit</p>
+                            </li>
+                            <li class="shortcut pl-3 py-2">
+                                <span class="font-medium">Mid/Side EQ</span>
+                                <p class="text-gray-400">Now standard in Parametric EQ 2 for advanced stereo field
+                                    control</p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Advanced Automation & Sound Design -->
+            <section id="automation" class="col-span-1 md:col-span-2 lg:col-span-3 mt-8 scroll-mt-8">
+                <h2 class="text-xl sm:text-2xl font-bold mb-4 section-header text-white">
+                    <i class="fas fa-bezier-curve mr-2 text-orange-500"></i><span data-i18n="automation-title">Advanced
+                        Automation & Sound Design</span>
+                </h2>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
+                    <!-- Multiple Parameter Control -->
+                    <div class="card p-5">
+                        <h3 class="text-xl font-semibold mb-4 text-orange-400">
+                            <i class="fas fa-sliders-h mr-2"></i>Multiple Parameter Control
+                        </h3>
+                        <div class="space-y-3">
+                            <p class="text-gray-300">Link multiple parameters to single automation clip:</p>
+                            <ol class="list-decimal ml-5 text-gray-400 space-y-2">
+                                <li>Create automation for first parameter</li>
+                                <li>Right-click second parameter > Link to > select existing automation</li>
+                                <li>Adjust response curves individually for creative control</li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <!-- Edison AI-Enhanced Audio Editing -->
+                    <div class="card p-5">
+                        <h3 class="text-xl font-semibold mb-4 text-orange-400">
+                            <i class="fas fa-waveform mr-2"></i>Edison AI-Enhanced Audio Editing
+                        </h3>
+                        <ul class="space-y-3">
+                            <li class="shortcut pl-3 py-2">
+                                <span class="font-medium">Advanced Noise Removal</span>
+                                <p class="text-gray-400">AI-powered algorithm for clean recordings without artifacts</p>
+                            </li>
+                            <li class="shortcut pl-3 py-2">
+                                <span class="font-medium">Enhanced Declipping</span>
+                                <p class="text-gray-400">Recover peaks from distorted recordings</p>
+                            </li>
+                            <li class="shortcut pl-3 py-2">
+                                <span class="font-medium">Dump Last Piano Score</span>
+                                <p class="text-gray-400">Capture improvisations even when not in recording mode</p>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- MIDI Wizardry -->
+                    <div class="card p-5">
+                        <h3 class="text-xl font-semibold mb-4 text-orange-400">
+                            <i class="fas fa-hat-wizard mr-2"></i>MIDI Wizardry
+                        </h3>
+                        <ul class="space-y-3">
+                            <li class="shortcut pl-3 py-2">
+                                <span class="font-medium">MIDI Note Hold</span>
+                                <p class="text-gray-400">Right-click on MIDI note in Piano Roll, choose "Hold" for
+                                    infinite sustain without pedal</p>
+                            </li>
+                            <li class="shortcut pl-3 py-2">
+                                <span class="font-medium">Fastest MIDI Transposition</span>
+                                <p class="text-gray-400">Select all notes, hold Alt while dragging to transpose entire
+                                    section</p>
+                            </li>
+                            <li class="shortcut pl-3 py-2">
+                                <span class="font-medium">Riff Machine</span>
+                                <p class="text-gray-400">Right-click on channel rack, select "Riff Machine" for instant
+                                    melodic inspiration</p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Mixer & Routing Mastery -->
+            <section id="mixer" class="col-span-1 md:col-span-2 lg:col-span-3 mt-8 scroll-mt-8">
+                <h2 class="text-xl sm:text-2xl font-bold mb-4 section-header text-white">
+                    <i class="fas fa-sliders-h mr-2 text-orange-500"></i><span data-i18n="mixer-title">Mixer & Routing
+                        Mastery</span>
+                </h2>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+                    <!-- Advanced Routing Techniques -->
+                    <div class="card p-5">
+                        <h3 class="text-xl font-semibold mb-4 text-orange-400">
+                            <i class="fas fa-route mr-2"></i>Advanced Routing Techniques
+                        </h3>
+                        <ul class="space-y-3">
+                            <li class="shortcut pl-3 py-2">
+                                <span class="font-medium">Multiple Destinations</span>
+                                <p class="text-gray-400">Ctrl+Click on routing arrows to send channel to multiple mixer
+                                    tracks</p>
+                            </li>
+                            <li class="shortcut pl-3 py-2">
+                                <span class="font-medium">Sidechain Routing</span>
+                                <p class="text-gray-400">Right-click on mixer track > Sidechain to this track > select
+                                    input for precise ducking control</p>
+                            </li>
+                            <li class="shortcut pl-3 py-2">
+                                <span class="kbd">Alt</span> + <span class="kbd">Arrow Keys</span>
+                                <p class="text-gray-400">Reorganize mixer without disrupting routing</p>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Hidden Plugin Management -->
+                    <div class="card p-5">
+                        <h3 class="text-xl font-semibold mb-4 text-orange-400">
+                            <i class="fas fa-puzzle-piece mr-2"></i>Hidden Plugin Management
+                        </h3>
+                        <ul class="space-y-3">
+                            <li class="shortcut pl-3 py-2">
+                                <span class="font-medium">Plugin Scanner Override</span>
+                                <p class="text-gray-400">Add plugins manually by editing plugins.csv in FL Studio
+                                    directory for stubborn VSTs</p>
+                            </li>
+                            <li class="shortcut pl-3 py-2">
+                                <span class="font-medium">Plugin Database Categorization</span>
+                                <p class="text-gray-400">Create custom categories by editing plugin database.nfo file
+                                </p>
+                            </li>
+                            <li class="shortcut pl-3 py-2">
+                                <span class="kbd">Alt</span> + <span class="kbd">Right-click</span> on plugins in
+                                browser
+                                <p class="text-gray-400">Add to favorites without dragging</p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Footer -->
+        <footer class="mt-16 text-center text-gray-500 text-sm pb-10 border-t border-gray-800 pt-8">
+            <p data-i18n="footer-title">The Ultimate FL Studio 2024 Advanced Cheat Sheet</p>
+            <p class="mt-1" data-i18n="footer-subtitle">Based on insider tricks & hidden workflow optimizations</p>
+            <div class="mt-4 flex justify-center space-x-4">
+                <button id="toggle-dark-mode"
+                    class="text-gray-400 hover:text-white transition-colors px-3 py-1 sm:px-4 sm:py-2 rounded-full hover:bg-gray-800 text-sm">
+                    <i class="fas fa-moon mr-1 sm:mr-2"></i><span data-i18n="btn-toggle-theme">Toggle Theme</span>
+                </button>
+            </div>
+            <div class="mt-4 text-xs">
+                <p><span data-i18n="footer-tip">Press</span> <span class="kbd">Enter</span> <span
+                        data-i18n="footer-tip-continue">to focus search</span></p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Notification Toast -->
+    <div id="toast"
+        class="fixed bottom-20 right-5 bg-gray-800 text-white px-4 py-2 rounded shadow-lg hidden transition-opacity duration-300 opacity-0">
+        <span id="toast-message" data-i18n="toast-copied">Copied to clipboard!</span>
+    </div>
+
+    <!-- Author Attribution -->
+    <a href="https://leonxger.github.io" target="_blank" class="author-attribution">
+        made by leonxger <i class="fab fa-github"></i>
+    </a>
+
+    <!-- Alpine.js -->
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.2/dist/alpine.min.js" defer></script>
+    <script>
+        // Translations object
+        const translations = {
+            en: {
+                // Meta & Head
+                "page-title": "FL Studio 2024 Advanced Cheat Sheet | Workflow Optimization",
+
+                // Header
+                "main-title": "FL Studio 2024",
+                "sub-title": "Advanced Cheat Sheet",
+                "description": "Insider Tricks & Hidden Workflow Optimizations",
+
+                // Navigation
+                "nav-shortcuts": "Shortcuts",
+                "nav-workflow": "Workflow",
+                "nav-organization": "Organization",
+                "nav-features": "2024 Features",
+                "nav-automation": "Automation",
+                "nav-mixer": "Mixer",
+
+                // Search
+                "search-placeholder": "Search shortcuts or features...",
+                "search-showing": "Showing",
+                "search-results": "results",
+
+                // Sections
+                "shortcuts-title": "Advanced Keyboard Shortcuts",
+                "shortcuts-show-all": "Show All",
+                "workflow-title": "Advanced Workflow Techniques",
+                "organization-title": "Project Organization & Templates",
+                "features-title": "FL Studio 2024 Exclusive Features",
+                "automation-title": "Advanced Automation & Sound Design",
+                "mixer-title": "Mixer & Routing Mastery",
+
+                // Notification and buttons
+                "btn-toggle-theme": "Toggle Theme",
+                "toast-copied": "Copied to clipboard!",
+
+                // Footer
+                "footer-title": "The Ultimate FL Studio 2024 Advanced Cheat Sheet",
+                "footer-subtitle": "Based on insider tricks & hidden workflow optimizations",
+                "footer-tip": "Press",
+                "footer-tip-continue": "to focus search",
+
+                // Help Modal
+                "help-title": "Keyboard Shortcuts",
+                "help-shortcut-1": "Focus search",
+                "help-shortcut-2": "Clear search",
+                "help-shortcut-3": "Toggle theme",
+                "help-tip": "Click on any section in the navigation bar to quickly jump to that section."
+            },
+            de: {
+                // Meta & Head
+                "page-title": "FL Studio 2024 Fortgeschrittene Kurzanleitung | Workflow-Optimierung",
+
+                // Header
+                "main-title": "FL Studio 2024",
+                "sub-title": "Fortgeschrittene Kurzanleitung",
+                "description": "Insider-Tricks & Versteckte Workflow-Optimierungen",
+
+                // Navigation
+                "nav-shortcuts": "Tastenkürzel",
+                "nav-workflow": "Arbeitsablauf",
+                "nav-organization": "Organisation",
+                "nav-features": "2024 Funktionen",
+                "nav-automation": "Automatisierung",
+                "nav-mixer": "Mixer",
+
+                // Search
+                "search-placeholder": "Tastenkürzel oder Funktionen suchen...",
+                "search-showing": "Zeige",
+                "search-results": "Ergebnisse",
+
+                // Sections
+                "shortcuts-title": "Fortgeschrittene Tastenkürzel",
+                "shortcuts-show-all": "Alle anzeigen",
+                "workflow-title": "Fortgeschrittene Workflow-Techniken",
+                "organization-title": "Projekt-Organisation & Vorlagen",
+                "features-title": "FL Studio 2024 Exklusive Funktionen",
+                "automation-title": "Fortgeschrittene Automatisierung & Sound-Design",
+                "mixer-title": "Mixer & Routing-Beherrschung",
+
+                // Notification and buttons
+                "btn-toggle-theme": "Thema wechseln",
+                "toast-copied": "In die Zwischenablage kopiert!",
+
+                // Footer
+                "footer-title": "Die ultimative FL Studio 2024 fortgeschrittene Kurzanleitung",
+                "footer-subtitle": "Basierend auf Insider-Tricks & versteckten Workflow-Optimierungen",
+                "footer-tip": "Drücke",
+                "footer-tip-continue": "um die Suche zu fokussieren",
+
+                // Help Modal
+                "help-title": "Tastaturkürzel",
+                "help-shortcut-1": "Suche fokussieren",
+                "help-shortcut-2": "Suche löschen",
+                "help-shortcut-3": "Thema wechseln",
+                "help-tip": "Klicke auf einen Abschnitt in der Navigationsleiste, um schnell zu diesem Abschnitt zu springen."
+            }
+        };
+
+        document.addEventListener('DOMContentLoaded', function () {
+            // Page loading
+            const loadingOverlay = document.getElementById('loading-overlay');
+
+            // Hide loading animation after the page loads
+            window.addEventListener('load', function () {
+                document.body.classList.add('loaded');
+                setTimeout(() => {
+                    loadingOverlay.style.opacity = '0';
+                    loadingOverlay.style.visibility = 'hidden';
+                }, 300);
+            });
+
+            // DOM elements
+            const searchInput = document.getElementById('search-input');
+            const searchButton = document.getElementById('search-button');
+            const searchStats = document.getElementById('search-stats');
+            const resultsCount = document.getElementById('results-count');
+            const allShortcuts = document.querySelectorAll('.shortcut, li, p');
+            const cards = document.querySelectorAll('.card');
+            const sections = document.querySelectorAll('section');
+            const toggleDarkMode = document.getElementById('toggle-dark-mode');
+            const copyButtons = document.querySelectorAll('.copy-shortcut');
+            const categoryPills = document.querySelectorAll('.category-pill');
+
+            // Initialize theme based on system preference or saved preference
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'light') {
+                document.documentElement.classList.add('light');
+                document.documentElement.classList.remove('dark');
+                updateThemeButtonText();
+            } else {
+                document.documentElement.classList.add('dark');
+                document.documentElement.classList.remove('light');
+                updateThemeButtonText();
+            }
+
+            // Initialize language
+            // Language initialization is now handled by the global script
+            /* Removed redundant language initialization code that was causing conflicts
+            const savedLang = localStorage.getItem('language') || 'en';
+            document.documentElement.setAttribute('data-lang', savedLang);
+            document.documentElement.lang = savedLang;
+            
+            // Set up language toggle button
+            const langToggleBtn = document.getElementById('lang-toggle-btn');
+            
+            // Set initial button text
+            langToggleBtn.textContent = savedLang === 'en' ? 'EN' : 'DE';
+            
+            // Apply initial language
+            updatePageLanguage(savedLang);
+            
+            // Add click event listener to language toggle button
+            langToggleBtn.addEventListener('click', function() {
+                // Get current language
+                const currentLang = document.documentElement.getAttribute('data-lang') || 'en';
+                
+                // Toggle language
+                const newLang = currentLang === 'en' ? 'de' : 'en';
+                
+                // Update HTML attributes
+                document.documentElement.setAttribute('data-lang', newLang);
+                document.documentElement.lang = newLang;
+                
+                // Update button text
+                this.textContent = newLang === 'en' ? 'EN' : 'DE';
+                
+                // Save to localStorage
+                localStorage.setItem('language', newLang);
+                
+                // Update page content
+                updatePageLanguage(newLang);
+                
+                // Show confirmation
+                showToast(newLang === 'en' ? 'Switched to English' : 'Zu Deutsch gewechselt');
+            });
+            
+            function updatePageLanguage(lang) {
+                // Update all text elements with translations
+                document.querySelectorAll('[data-i18n]').forEach(element => {
+                    const key = element.getAttribute('data-i18n');
+                    if (translations[lang] && translations[lang][key]) {
+                        element.textContent = translations[lang][key];
+                    }
+                });
+                
+                // Update placeholders
+                document.querySelectorAll('[data-i18n-placeholder]').forEach(element => {
+                    const key = element.getAttribute('data-i18n-placeholder');
+                    if (translations[lang] && translations[lang][key]) {
+                        element.placeholder = translations[lang][key];
+                    }
+                });
+                
+                // Update document title
+                document.title = translations[lang]['page-title'];
+                
+                // Update theme button text
+                updateThemeButtonText();
+            }
+            */
+
+            // Search functionality
+            function performSearch() {
+                const searchTerm = searchInput.value.toLowerCase();
+
+                if (searchTerm === '') {
+                    // Show all cards and sections when search is empty
+                    cards.forEach(card => card.style.display = 'block');
+                    sections.forEach(section => section.style.display = 'block');
+                    allShortcuts.forEach(item => {
+                        item.style.backgroundColor = '';
+                        item.style.boxShadow = '';
+                    });
+                    searchStats.classList.add('hidden');
+                    return;
+                }
+
+                // Hide all cards and sections initially
+                cards.forEach(card => card.style.display = 'none');
+                sections.forEach(section => section.style.display = 'none');
+
+                // Show cards and sections that contain the search term
+                let foundItems = 0;
+
+                allShortcuts.forEach(item => {
+                    if (item.textContent.toLowerCase().includes(searchTerm)) {
+                        foundItems++;
+                        item.style.backgroundColor = 'var(--highlight)';
+                        item.style.boxShadow = '0 0 5px rgba(255, 106, 0, 0.5)';
+
+                        // Show the parent card and section
+                        let parentCard = item.closest('.card');
+                        let parentSection = item.closest('section');
+
+                        if (parentCard) parentCard.style.display = 'block';
+                        if (parentSection) parentSection.style.display = 'block';
+                    } else {
+                        item.style.backgroundColor = '';
+                        item.style.boxShadow = '';
+                    }
+                });
+
+                // Update search stats
+                searchStats.classList.remove('hidden');
+                resultsCount.textContent = foundItems;
+
+                // Add a visual feedback for search
+                searchInput.classList.add('success-pulse');
+                setTimeout(() => {
+                    searchInput.classList.remove('success-pulse');
+                }, 1000);
+            }
+
+            searchInput.addEventListener('input', performSearch);
+            searchButton.addEventListener('click', performSearch);
+
+            // Keyboard shortcuts
+            document.addEventListener('keydown', function (e) {
+                // Focus search on Enter key press when not already focused
+                if (e.key === 'Enter' && document.activeElement !== searchInput) {
+                    e.preventDefault();
+                    searchInput.focus();
+                }
+
+                // Clear search on Escape key
+                if (e.key === 'Escape' && document.activeElement === searchInput) {
+                    searchInput.value = '';
+                    performSearch();
+                    searchInput.blur();
+                }
+
+                // Toggle dark mode with Alt+T
+                if (e.altKey && e.key === 't') {
+                    e.preventDefault();
+                    toggleTheme();
+                }
+            });
+
+            // Theme toggle
+            function toggleTheme() {
+                if (document.documentElement.classList.contains('dark')) {
+                    document.documentElement.classList.remove('dark');
+                    document.documentElement.classList.add('light');
+                    localStorage.setItem('theme', 'light');
+                } else {
+                    document.documentElement.classList.remove('light');
+                    document.documentElement.classList.add('dark');
+                    localStorage.setItem('theme', 'dark');
+                }
+                updateThemeButtonText();
+            }
+
+            function updateThemeButtonText() {
+                const isDark = document.documentElement.classList.contains('dark');
+                const currentLang = document.documentElement.getAttribute('data-lang') || 'en';
+
+                if (isDark) {
+                    toggleDarkMode.innerHTML = `<i class="fas fa-moon mr-1 sm:mr-2"></i><span>${translations[currentLang]['btn-toggle-theme']}</span>`;
+                } else {
+                    toggleDarkMode.innerHTML = `<i class="fas fa-sun mr-1 sm:mr-2"></i><span>${translations[currentLang]['btn-toggle-theme']}</span>`;
+                }
+            }
+
+            toggleDarkMode.addEventListener('click', toggleTheme);
+
+            // Copy shortcut functionality
+            copyButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const shortcut = button.getAttribute('data-shortcut');
+                    navigator.clipboard.writeText(shortcut).then(() => {
+                        const currentLang = document.documentElement.getAttribute('data-lang') || 'en';
+                        showToast(translations[currentLang]['toast-copied']);
+                        button.classList.add('success-pulse');
+                        setTimeout(() => {
+                            button.classList.remove('success-pulse');
+                        }, 1000);
+                    });
+                });
+            });
+
+            // Show toast notification
+            function showToast(message) {
+                const toastMessage = document.getElementById('toast-message');
+                toastMessage.textContent = message;
+                const toast = document.getElementById('toast');
+                toast.classList.remove('hidden');
+                toast.classList.add('opacity-100');
+
+                setTimeout(() => {
+                    toast.classList.remove('opacity-100');
+                    toast.classList.add('opacity-0');
+                    setTimeout(() => {
+                        toast.classList.add('hidden');
+                    }, 300);
+                }, 2000);
+            }
+
+            // Add fade-in animation to cards
+            cards.forEach((card, index) => {
+                setTimeout(() => {
+                    card.classList.add('fade-in');
+                }, index * 50); // Stagger the animations
+            });
+
+            // Smooth scroll for navigation links with active state
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+
+                    // Remove active class from all category pills
+                    categoryPills.forEach(pill => pill.classList.remove('active'));
+
+                    // Add active class to clicked pill
+                    this.classList.add('active');
+
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        window.scrollTo({
+                            top: target.offsetTop - 20,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+
+            // Add active class to category pill based on scroll position
+            window.addEventListener('scroll', () => {
+                const scrollPosition = window.scrollY;
+
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop - 100;
+                    const sectionBottom = sectionTop + section.offsetHeight;
+
+                    if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
+                        const id = section.getAttribute('id');
+                        categoryPills.forEach(pill => {
+                            pill.classList.remove('active');
+                            if (pill.getAttribute('href') === `#${id}`) {
+                                pill.classList.add('active');
+                            }
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+    <script>
+        // Execute after the page has fully loaded
+        window.addEventListener('load', function () {
+            // Force refresh language display
+            const currentLang = document.documentElement.getAttribute('data-lang') || 'en';
+            const langToggleBtn = document.getElementById('lang-toggle-btn');
+
+            // Ensure correct button text is displayed
+            langToggleBtn.textContent = currentLang === 'en' ? 'EN' : 'DE';
+
+            // Force update all translations
+            updatePageLanguage(currentLang);
+
+            function updatePageLanguage(lang) {
+                // Update all text elements with translations
+                document.querySelectorAll('[data-i18n]').forEach(element => {
+                    const key = element.getAttribute('data-i18n');
+                    if (translations[lang] && translations[lang][key]) {
+                        element.textContent = translations[lang][key];
+                    }
+                });
+
+                // Update placeholders
+                document.querySelectorAll('[data-i18n-placeholder]').forEach(element => {
+                    const key = element.getAttribute('data-i18n-placeholder');
+                    if (translations[lang] && translations[lang][key]) {
+                        element.placeholder = translations[lang][key];
+                    }
+                });
+            }
+        });
+    </script>
+    <script>
+        // Simple global language toggle function accessible via inline onclick
+        function toggleLanguage() {
+            // Get current language
+            const currentLang = document.documentElement.getAttribute('data-lang') || 'en';
+
+            // Toggle language
+            const newLang = currentLang === 'en' ? 'de' : 'en';
+
+            // Update HTML attributes
+            document.documentElement.setAttribute('data-lang', newLang);
+            document.documentElement.lang = newLang;
+
+            // Update button text
+            document.getElementById('lang-toggle-btn').textContent = newLang === 'en' ? 'EN' : 'DE';
+
+            // Save to localStorage
+            localStorage.setItem('language', newLang);
+
+            // Update all text elements with translations
+            document.querySelectorAll('[data-i18n]').forEach(element => {
+                const key = element.getAttribute('data-i18n');
+                if (translations[newLang] && translations[newLang][key]) {
+                    element.textContent = translations[newLang][key];
+                }
+            });
+
+            // Update placeholders
+            document.querySelectorAll('[data-i18n-placeholder]').forEach(element => {
+                const key = element.getAttribute('data-i18n-placeholder');
+                if (translations[newLang] && translations[newLang][key]) {
+                    element.placeholder = translations[newLang][key];
+                }
+            });
+
+            // Update document title
+            document.title = translations[newLang]['page-title'];
+
+            // Update theme button text if it exists
+            try {
+                const toggleDarkMode = document.getElementById('toggle-dark-mode');
+                const isDark = document.documentElement.classList.contains('dark');
+
+                if (toggleDarkMode) {
+                    if (isDark) {
+                        toggleDarkMode.innerHTML = `<i class="fas fa-moon mr-1 sm:mr-2"></i><span>${translations[newLang]['btn-toggle-theme']}</span>`;
+                    } else {
+                        toggleDarkMode.innerHTML = `<i class="fas fa-sun mr-1 sm:mr-2"></i><span>${translations[newLang]['btn-toggle-theme']}</span>`;
+                    }
+                }
+            } catch (e) {
+                console.log('Could not update theme button:', e);
+            }
+
+            // Show confirmation toast
+            try {
+                const toast = document.getElementById('toast');
+                const toastMessage = document.getElementById('toast-message');
+                toastMessage.textContent = newLang === 'en' ? 'Switched to English' : 'Zu Deutsch gewechselt';
+                toast.classList.remove('hidden');
+                toast.classList.add('opacity-100');
+
+                setTimeout(() => {
+                    toast.classList.remove('opacity-100');
+                    toast.classList.add('opacity-0');
+                    setTimeout(() => {
+                        toast.classList.add('hidden');
+                    }, 300);
+                }, 2000);
+            } catch (e) {
+                // If toast not available
+                console.log('Language changed to: ' + newLang);
+            }
+
+            return false; // Prevent default button action
+        }
+
+        // Initialize language on page load
+        document.addEventListener('DOMContentLoaded', function () {
+            // Set the initial language from localStorage or default to 'en'
+            const savedLang = localStorage.getItem('language') || 'en';
+
+            // Skip toggle, just set directly
+            document.documentElement.setAttribute('data-lang', savedLang);
+            document.documentElement.lang = savedLang;
+
+            const langToggleBtn = document.getElementById('lang-toggle-btn');
+            if (langToggleBtn) {
+                langToggleBtn.textContent = savedLang === 'en' ? 'EN' : 'DE';
+            }
+
+            // Update all text elements with initial language
+            document.querySelectorAll('[data-i18n]').forEach(element => {
+                const key = element.getAttribute('data-i18n');
+                if (translations[savedLang] && translations[savedLang][key]) {
+                    element.textContent = translations[savedLang][key];
+                }
+            });
+
+            // Update placeholders
+            document.querySelectorAll('[data-i18n-placeholder]').forEach(element => {
+                const key = element.getAttribute('data-i18n-placeholder');
+                if (translations[savedLang] && translations[savedLang][key]) {
+                    element.placeholder = translations[savedLang][key];
+                }
+            });
+
+            // Update document title
+            document.title = translations[savedLang]['page-title'];
+        });
+    </script>
+</body>
+
+</html>
